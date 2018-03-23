@@ -1,8 +1,10 @@
 package com.xfhy.girl.controller;
 
+import com.xfhy.girl.domain.Result;
 import com.xfhy.girl.repository.GirlRepository;
 import com.xfhy.girl.service.GirlService;
 import com.xfhy.girl.domain.Girl;
+import com.xfhy.girl.utils.ResultUtil;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -51,13 +53,13 @@ public class GirlController {
      * @return
      */
     @PostMapping(value = "/girls")  //post方式  form-data里面放入值cupSize,age
-    public Girl girlAdd(@Valid Girl girl, BindingResult bindingResult) {  //@Valid表示需要验证这个对象
+    public Result<Girl> girlAdd(@Valid Girl girl, BindingResult bindingResult) {  //@Valid表示需要验证这个对象
         //如果有错误 则不往下走了
         if (bindingResult.hasErrors()) {
-            LOGGER.info(bindingResult.getFieldError().getDefaultMessage());
-            return null;
+            return ResultUtil.error(1, bindingResult.getFieldError().getDefaultMessage());
         }
-        return girlRepository.save(girl);
+
+        return ResultUtil.success(girlRepository.save(girl));
     }
 
     /**
