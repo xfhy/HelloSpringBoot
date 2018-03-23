@@ -4,6 +4,8 @@ import com.xfhy.girl.repository.GirlRepository;
 import com.xfhy.girl.service.GirlService;
 import com.xfhy.girl.domain.Girl;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -26,7 +28,7 @@ import javax.validation.Valid;
  */
 @RestController
 public class GirlController {
-
+    private final static Logger LOGGER = LoggerFactory.getLogger(GirlController.class);
     @Autowired
     private GirlRepository girlRepository;
 
@@ -52,7 +54,7 @@ public class GirlController {
     public Girl girlAdd(@Valid Girl girl, BindingResult bindingResult) {  //@Valid表示需要验证这个对象
         //如果有错误 则不往下走了
         if (bindingResult.hasErrors()) {
-            System.out.println(bindingResult.getFieldError().getDefaultMessage());
+            LOGGER.info(bindingResult.getFieldError().getDefaultMessage());
             return null;
         }
         return girlRepository.save(girl);
