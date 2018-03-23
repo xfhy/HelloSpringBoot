@@ -1,6 +1,8 @@
 package com.xfhy.girl.controller;
 
 import com.xfhy.girl.domain.Result;
+import com.xfhy.girl.enums.ResultEnum;
+import com.xfhy.girl.exception.GirlException;
 import com.xfhy.girl.repository.GirlRepository;
 import com.xfhy.girl.service.GirlService;
 import com.xfhy.girl.domain.Girl;
@@ -85,7 +87,12 @@ public class GirlController {
     @PutMapping(value = "/girls/{id}")
     public Girl girlUpdate(@PathVariable("id") Integer id,
                            @RequestParam("cupSize") String cupSize,
-                           @RequestParam("age") int age) {
+                           @RequestParam("age") Integer age) throws GirlException {
+        if (age < 18) {
+            //这里为了测试  小于18的就抛异常
+            throw new GirlException(ResultEnum.ERROR);
+        }
+
         Girl girl = new Girl();
         girl.setId(id);
         girl.setCupSize(cupSize);
