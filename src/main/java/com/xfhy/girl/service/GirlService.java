@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Optional;
+
 /**
  * author xfhy
  * create at 2018/3/23 14:37
@@ -29,6 +31,11 @@ public class GirlService {
         girlB.setCupSize("F");
         girlB.setAge(16);
         girlRepository.save(girlB);
+    }
+
+    public Girl findOneGirl(Integer id) {
+        Optional<Girl> girl = girlRepository.findById(id);
+        return girl.get();
     }
 
 }

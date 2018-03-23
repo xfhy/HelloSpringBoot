@@ -16,20 +16,20 @@ public class Girl {
 
     @Id     //导入时认准:javax.persistence.Id;
     @GeneratedValue(strategy = GenerationType.IDENTITY)     //id且自增
-    private int id;
+    private Integer id;
     private String cupSize;
 
     @Min(value = 18, message = "未成年少女禁止入内")   //限制  最小18
-    private int age;
+    private Integer age;
 
     public Girl() {
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -41,11 +41,11 @@ public class Girl {
         this.cupSize = cupSize;
     }
 
-    public int getAge() {
+    public Integer getAge() {
         return age;
     }
 
-    public void setAge(int age) {
+    public void setAge(Integer age) {
         this.age = age;
     }
 }
