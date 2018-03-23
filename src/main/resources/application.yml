@@ -1,0 +1,21 @@
+server:
+  port: 8083
+  servlet:
+    context-path: /girl   #url前面需要加上这个
+girl:
+  cupSize: B
+  age: 18
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/dbgirl
+    username: root   #配置用户名,密码
+    password: root
+  jpa:
+    hibernate:
+                #create 无表则会创建表,有表则会删除表重新创建
+                #update 无表则会创建表,有表则不会删除之前的数据
+      ddl-auto: update
+    show-sql: true    #可以在控制台打印sql语句
+    database: mysql
