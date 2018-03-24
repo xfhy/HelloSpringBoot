@@ -21,7 +21,7 @@ public class ExceptionHandle {
     private final static Logger LOGGER = LoggerFactory.getLogger(ExceptionHandle.class);
 
     @ExceptionHandler(value = Exception.class)
-    @ResponseBody
+    @ResponseBody   //返回
     public Result handle(Exception e) {
         //判断一下是不是自己定义的异常
         if (e instanceof GirlException) {

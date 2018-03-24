@@ -20,7 +20,7 @@ public class GirlService {
     @Autowired
     private GirlRepository girlRepository;
 
-    @Transactional
+    @Transactional    //事务
     public void insertTwo() {
         Girl girlA = new Girl();
         girlA.setCupSize("A");
